@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{858832A9-D5A8-4776-98F1-69C092F9EE55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CAF8190C-7A01-49E2-932F-A2DB9E1F360B}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "NETCoreTutorial", "src\NETCoreTutorial\NETCoreTutorial.xproj", "{024D1C2C-8D4A-4FBA-ABAA-49E7B8E3AAA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{024D1C2C-8D4A-4FBA-ABAA-49E7B8E3AAA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024D1C2C-8D4A-4FBA-ABAA-49E7B8E3AAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024D1C2C-8D4A-4FBA-ABAA-49E7B8E3AAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024D1C2C-8D4A-4FBA-ABAA-49E7B8E3AAA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{024D1C2C-8D4A-4FBA-ABAA-49E7B8E3AAA6} = {858832A9-D5A8-4776-98F1-69C092F9EE55}
+	EndGlobalSection
+EndGlobal
