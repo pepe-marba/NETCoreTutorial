@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>The world - @ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div id="sidebar">
+        <img src="~/img/face_left.png" alt="User" class="headshot" />
+        <span id="username">Sam Hasting</span>
+        <ul class="menu">
+            <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
+            <li><a asp-controller="App" asp-action="About">About</a></li>
+            <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
+        </ul>
+    </div>
+    <div id="wrapper">
+        <div id="main">
+            <div>
+                <button id="sidebarToggle">Toggle Menu</button>
+            </div>
+            @RenderBody()
+        </div>
+        <div id="footer">
+            &copy;2017 JASBIT Ltd;
+        </div>
+    </div>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("scripts",false)
+    <script tyoe="text/javascript" src="~/js/site.js"></script>
+
+</body>
+</html>
