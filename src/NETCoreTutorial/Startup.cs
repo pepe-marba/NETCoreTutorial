@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NETCoreTutorial.Services;
 using Microsoft.Extensions.Configuration;
+using NETCoreTutorial.Models;
 
 namespace NETCoreTutorial
 {
@@ -42,19 +43,30 @@ namespace NETCoreTutorial
             {
                 //Implement real Mail service
             }
-            
 
+            services.AddDbContext<WorldContext>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
+            services.AddTransient<WorldContextSeedData>();
+            services.AddLogging();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory,
+            WorldContextSeedData seeder)
         {
-            loggerFactory.AddConsole();
+            //loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddDebug(LogLevel.Information);
+            }
+            else
+            {
+                loggerFactory.AddDebug(LogLevel.Error);
             }
 
             //For static files *.html
@@ -67,7 +79,8 @@ namespace NETCoreTutorial
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action ="Index"});
             });
-            
+
+            seeder.EnsureSeedData().Wait();
         }
     }
 }
