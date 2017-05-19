@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 using NETCoreTutorial.Services;
 using Microsoft.Extensions.Configuration;
 using NETCoreTutorial.Models;
+using Newtonsoft.Json.Serialization;
+using AutoMapper;
+using NETCoreTutorial.ViewModels;
 
 namespace NETCoreTutorial
 {
@@ -48,7 +51,10 @@ namespace NETCoreTutorial
             services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<WorldContextSeedData>();
             services.AddLogging();
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(config => {
+                    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +64,11 @@ namespace NETCoreTutorial
             WorldContextSeedData seeder)
         {
             //loggerFactory.AddConsole();
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<TripViewModel, Trip>().ReverseMap();
+                config.CreateMap<StopViewModel, Stop>().ReverseMap();
+            });
 
             if (env.IsDevelopment())
             {
