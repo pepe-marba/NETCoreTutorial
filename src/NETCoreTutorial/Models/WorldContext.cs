@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace NETCoreTutorial.Models
 {
     //Access to DB
-    public class WorldContext:DbContext
+    //This class represents the types of data that is stored in the database
+    public class WorldContext:IdentityDbContext<WorldUser>
     {
         private IConfigurationRoot _config;
 

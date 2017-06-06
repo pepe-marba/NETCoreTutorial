@@ -18,9 +18,9 @@ namespace NETCoreTutorial.Models
             _logger = logger;
         }
 
-        public void AddStop(string tripName, Stop newStop)
+        public void AddStop(string tripName, Stop newStop, string userName)
         {
-            var trip = GetTripByName(tripName);
+            var trip = GetUserTripByName(tripName,userName);
             if (trip != null)
             {
                 trip.Stops.Add(newStop);
@@ -44,6 +44,14 @@ namespace NETCoreTutorial.Models
             return _context.Trips
                 .Include(t => t.Stops)
                 .Where(x => x.Name == tripName)
+                .FirstOrDefault();
+        }
+
+        public Trip GetUserTripByName(string tripName, string name)
+        {
+            return _context.Trips
+                .Include(t => t.Stops)
+                .Where(x => x.Name == tripName && x.UserName == name)
                 .FirstOrDefault();
         }
 

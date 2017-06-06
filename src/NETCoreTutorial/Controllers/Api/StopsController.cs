@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NETCoreTutorial.Models;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 namespace NETCoreTutorial.Controllers.Api
 {
     [Route("/api/trips/{tripName}/stops")]
+    [Authorize]
     public class StopsController:Controller
     {
         private GeoCoordsService _coordsService;
@@ -30,7 +32,7 @@ namespace NETCoreTutorial.Controllers.Api
         {
             try
             {
-                var trip = _repository.GetTripByName(tripName);
+                var trip = _repository.GetUserTripByName(tripName, User.Identity.Name);
 
                 return Ok(Mapper.Map<IEnumerable<StopViewModel>>(trip.Stops.OrderBy(s => s.Order).ToList()));
             }
@@ -66,7 +68,7 @@ namespace NETCoreTutorial.Controllers.Api
                     }
 
                     //Save to Database
-                    _repository.AddStop(tripName, newStop);
+                    _repository.AddStop(tripName, newStop, User.Identity.Name);
 
                     if (await _repository.SaveChangesAsync())
                     {
