@@ -1,3 +1,6 @@
 {
-  "directory": "wwwroot/lib"
+  "directory": "wwwroot/lib",
+  "analytics": false,
+  "strict-ssl": true,
+  "https-proxy": ""
 }
