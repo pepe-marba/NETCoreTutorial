@@ -34,7 +34,12 @@ namespace NETCoreTutorial.Controllers.Api
             {
                 var trip = _repository.GetUserTripByName(tripName, User.Identity.Name);
 
-                return Ok(Mapper.Map<IEnumerable<StopViewModel>>(trip.Stops.OrderBy(s => s.Order).ToList()));
+                if (trip != null)
+                {
+                    return Ok(Mapper.Map<IEnumerable<StopViewModel>>(trip.Stops.OrderBy(s => s.Order).ToList()));
+                }
+
+                return Ok();
             }
             catch (Exception ex)
             {

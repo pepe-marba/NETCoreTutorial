@@ -48,6 +48,7 @@ namespace NETCoreTutorial.Controllers.Api
             {
                 //Save to DB
                 var newTrip = Mapper.Map<Trip>(theTrip);
+                newTrip.UserName = User.Identity.Name;
                 _repository.AddTrip(newTrip);
 
                 if (await _repository.SaveChangesAsync())
