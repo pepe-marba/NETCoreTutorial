@@ -62,9 +62,18 @@
             </div>
         </div>
     </div>
+    
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script tyoe="text/javascript" src="~/js/site.js"></script>
+    
+    <environment names="Development">
+        <script tyoe="text/javascript" src="~/js/site.js"></script>
+    </environment>
+
+    <environment names="Production,Staging">
+        <script tyoe="text/javascript" src="~/lib/_app/site.js"></script>
+    </environment>
+
     @RenderSection("scripts", false)
 
 </body>
